@@ -1,0 +1,16 @@
+{
+    "users":[
+        {
+            "firstname":"Manish",
+            "lastname":"Kumar",
+            "PhoneNumber":"8434288967",
+            "userId":"iammanish.kr",
+            "password":"mak1234",
+            "degree":{
+                "bachelor":"BCA",
+                "master":"MCA"
+            }
+
+        }
+    ]
+}

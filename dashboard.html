@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Dashboard</title>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+</head>
+<body>
+
+<h1>User Dashboard</h1>
+
+<table id="userTable">
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone Number</th>
+    <th>User ID</th>
+    <th>Actions</th>
+  </tr>
+
+</table>
+
+<button onclick="addUser()">Add User</button>
+
+<script>
+var users = []; // Array to store user data
+
+// Function to add a new user
+function addUser() {
+  var firstName = prompt("Enter First Name:");
+  var lastName = prompt("Enter Last Name:");
+  var phoneNumber = prompt("Enter Phone Number:");
+  var userId = prompt("Enter User ID:");
+
+  // Validate input (optional)
+
+  // Add user data to the array
+  users.push({
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    userId: userId
+  });
+
+  // Update the table with the new user data
+  updateTable();
+}
+
+// Function to update the table
+function updateTable() {
+  var table = document.getElementById("userTable");
+  table.innerHTML = "<tr><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>User ID</th><th>Actions</th></tr>"; // Clear table
+
+  for (var i = 0; i < users.length; i++) {
+    var row = table.insertRow();
+    var firstNameCell = row.insertCell();
+    var lastNameCell = row.insertCell();
+    var phoneNumberCell = row.insertCell();
+    var userIdCell = row.insertCell();
+    var actionsCell = row.insertCell();
+
+    firstNameCell.innerHTML = users[i].firstName;
+    lastNameCell.innerHTML = users[i].lastName;
+    phoneNumberCell. innerHTML = users[i].phoneNumber;
+    userIdCell.innerHTML = users[i].userId;
+    actionsCell.innerHTML = `<button onclick="editUser (${i})">Edit</button> <button onclick="deleteUser (${i})">Delete</button>`;
+  }
+}
+
+// Function to edit a user
+function editUser (index) {
+  var user = users[index];
+  var firstName = prompt("Edit First Name:", user.firstName);
+  var lastName = prompt("Edit Last Name:", user.lastName);
+  var phoneNumber = prompt("Edit Phone Number:", user.phoneNumber);
+  var userId = prompt("Edit User ID:", user.userId);
+
+  // Update user data
+  users[index] = {
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    userId: userId
+  };
+
+  // Update the table
+  updateTable();
+}
+
+// Function to delete a user
+function deleteUser (index) {
+  users.splice(index, 1); // Remove user from the array
+  updateTable(); // Update the table
+}
+</script>
+
+</body>
+</html>
